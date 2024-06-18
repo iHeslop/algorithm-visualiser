@@ -20,8 +20,34 @@ html {
  * Remove the margin in all browsers.
  */
 
+@font-face {
+  font-family: "Opificio-Regular";
+  src: url("/src/assets/fonts/opificio_regular.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Opificio-Light";
+  src: url("/src/assets/fonts/opificio_light.ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Opificio-Bold";
+  src: url("/src/assets/fonts/opificio_bold.ttf");
+  font-display: swap;
+}
+
+:root {
+  --c-txt: #ece7e1;
+  --c-bg: #1a1818;
+}
+
 body {
   margin: 0;
+  background-color: var(--c-bg);
+  color: var(--c-txt);
+  font-family: "Opificio-Regular";
 }
 
 /**
@@ -174,7 +200,8 @@ textarea {
  */
 
 button,
-input { /* 1 */
+input {
+  /* 1 */
   overflow: visible;
 }
 
@@ -184,7 +211,8 @@ input { /* 1 */
  */
 
 button,
-select { /* 1 */
+select {
+  /* 1 */
   text-transform: none;
 }
 
