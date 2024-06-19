@@ -48,8 +48,3 @@ export const mergeSort = (data: number[]): number[] => {
   console.log("Merge Sort");
   return [];
 };
-
-export const heapSort = (data: number[]): number[] => {
-  console.log("Heap Sort");
-  return [];
-};
