@@ -1,18 +1,36 @@
 import styles from "./NavBar.module.scss";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { useContext } from "react";
+import { NumberContext } from "../../context/NumberContextProvider";
 
 const NavBar = () => {
+  const { randomizeNumbers, sortNumbers } = useContext(NumberContext);
   return (
     <div className={styles.container}>
       <div className={styles.box}>
-        <NavLink to="/sort" className={styles.link}>
+        <NavLink
+          to="/sort"
+          className={({ isActive }) =>
+            isActive ? `${styles.link} ${styles.active}` : styles.link
+          }
+        >
           SORTING
         </NavLink>
-        <NavLink to="/search" className={styles.link}>
+        <NavLink
+          to="/search"
+          className={({ isActive }) =>
+            isActive ? `${styles.link} ${styles.active}` : styles.link
+          }
+        >
           SEARCH
         </NavLink>
-        <NavLink to="/traversal" className={styles.link}>
+        <NavLink
+          to="/traversal"
+          className={({ isActive }) =>
+            isActive ? `${styles.link} ${styles.active}` : styles.link
+          }
+        >
           TRAVERSAL
         </NavLink>
       </div>
@@ -23,8 +41,12 @@ const NavBar = () => {
         </NavLink>
       </div>
       <div className={styles.box}>
-        <p className={styles.link_btn}>RANDOMIZE</p>
-        <p className={styles.link_btn}>SORT</p>
+        <p className={styles.link_btn} onClick={randomizeNumbers}>
+          RANDOMIZE
+        </p>
+        <p className={styles.link_btn} onClick={sortNumbers}>
+          SORT
+        </p>
       </div>
     </div>
   );

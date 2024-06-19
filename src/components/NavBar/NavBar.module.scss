@@ -30,7 +30,7 @@
 }
 
 .title {
-  font-family: "Opificio-Bold";
+  font-family: "NeueHaas-Bold";
   font-size: 28px;
   color: var(--c-txt);
   text-decoration: none;
@@ -38,7 +38,7 @@
 }
 
 .link {
-  font-family: "Opificio-Bold";
+  font-family: "NeueHaas-Bold";
   font-size: 16px;
   color: var(--c-txt);
   text-decoration: none;
@@ -49,7 +49,7 @@
     cursor: pointer;
   }
   &_btn {
-    font-family: "Opificio-Bold";
+    font-family: "NeueHaas-Bold";
     font-size: 16px;
     color: var(--c-txt);
     text-decoration: none;
@@ -65,4 +65,8 @@
 
 .image {
   height: 3em;
+}
+
+.active {
+  color: greenyellow;
 }

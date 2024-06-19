@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 3%;
+}
+
+.bar {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: greenyellow;
+  color: var(--c-bg);
+  width: 3em;
+  &_min {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: red;
+    color: var(--c-bg);
+    width: 3em;
+  }
+  &_sorted {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: rebeccapurple;
+    color: var(--c-bg);
+    width: 3em;
+  }
+  &_swap {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: aqua;
+    color: var(--c-bg);
+    width: 3em;
+  }
+}

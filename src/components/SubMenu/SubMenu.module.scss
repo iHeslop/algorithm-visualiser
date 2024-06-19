@@ -10,7 +10,7 @@
 }
 
 .link {
-  font-family: "Opificio-Bold";
+  font-family: "NeueHaas";
   font-size: 16px;
   color: var(--c-txt);
   text-decoration: none;
@@ -20,4 +20,8 @@
     opacity: 0.6;
     cursor: pointer;
   }
+}
+
+.selected {
+  color: greenyellow;
 }

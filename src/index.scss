@@ -21,20 +21,14 @@ html {
  */
 
 @font-face {
-  font-family: "Opificio-Regular";
-  src: url("/src/assets/fonts/opificio_regular.ttf");
+  font-family: "NeueHaas";
+  src: url("/src/assets/fonts/NeueHaasDisplayMediu.ttf");
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Opificio-Light";
-  src: url("/src/assets/fonts/opificio_light.ttf");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Opificio-Bold";
-  src: url("/src/assets/fonts/opificio_bold.ttf");
+  font-family: "NeueHaas-Bold";
+  src: url("/src/assets/fonts/NeueHaasDisplayBlack.ttf");
   font-display: swap;
 }
 
@@ -47,7 +41,7 @@ body {
   margin: 0;
   background-color: var(--c-bg);
   color: var(--c-txt);
-  font-family: "Opificio-Regular";
+  font-family: "NeueHaas";
 }
 
 /**
