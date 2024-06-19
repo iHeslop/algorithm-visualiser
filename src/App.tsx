@@ -4,10 +4,11 @@ import HomePage from "./pages/HomePage/HomePage";
 import SortPage from "./pages/SortPage/SortPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import TraversalPage from "./pages/TraversalPage/TraversalPage";
+import NumberContextProvider from "./context/NumberContextProvider";
 
 function App() {
   return (
-    <>
+    <NumberContextProvider>
       <BrowserRouter>
         <NavBar />
         <Routes>
@@ -17,7 +18,7 @@ function App() {
           <Route path="/traversal" element={<TraversalPage />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </NumberContextProvider>
   );
 }
 

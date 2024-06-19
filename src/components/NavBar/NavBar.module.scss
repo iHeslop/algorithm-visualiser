@@ -1,0 +1,68 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 3%;
+  padding-left: 3%;
+  height: 5em;
+  border-bottom: 1px solid var(--c-txt);
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4em;
+  width: 25%;
+  &_title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      opacity: 0.6;
+      cursor: pointer;
+    }
+  }
+}
+
+.title {
+  font-family: "Opificio-Bold";
+  font-size: 28px;
+  color: var(--c-txt);
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}
+
+.link {
+  font-family: "Opificio-Bold";
+  font-size: 16px;
+  color: var(--c-txt);
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+  letter-spacing: 2px;
+  &:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+  &_btn {
+    font-family: "Opificio-Bold";
+    font-size: 16px;
+    color: var(--c-txt);
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    letter-spacing: 2px;
+    &:hover {
+      opacity: 0.6;
+      cursor: pointer;
+      color: greenyellow;
+    }
+  }
+}
+
+.image {
+  height: 3em;
+}
