@@ -3,7 +3,7 @@ import {
   selectionSort,
   bubbleSort,
   insertionSort,
-  // quickSort,
+  quickSort,
   // mergeSort,
 } from "../services/sortFunctions";
 
@@ -14,18 +14,28 @@ type SortingFunction = (
     index1: number | null,
     index2: number | null,
     action: string
-  ) => void
+  ) => void,
+  low?: number,
+  high?: number
 ) => Promise<number[]>;
 
 interface Items {
   [key: string]: SortingFunction;
 }
 
+const quickSortWrapper: SortingFunction = async (
+  data,
+  updateNumbers,
+  updateStyles
+) => {
+  return quickSort(data, 0, data.length - 1, updateNumbers, updateStyles);
+};
+
 const items: Items = {
   "SELECTION SORT": selectionSort,
   "BUBBLE SORT": bubbleSort,
   "INSERTION SORT": insertionSort,
-  // "QUICK SORT": quickSort,
+  "QUICK SORT": quickSortWrapper,
   // "MERGE SORT": mergeSort,
 };
 
