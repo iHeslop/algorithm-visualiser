@@ -3,11 +3,19 @@ import {
   selectionSort,
   bubbleSort,
   insertionSort,
-  quickSort,
-  mergeSort,
+  // quickSort,
+  // mergeSort,
 } from "../services/sortFunctions";
 
-type SortingFunction = (data: number[]) => number[];
+type SortingFunction = (
+  data: number[],
+  updateNumbers: (numbers: number[]) => void,
+  updateStyles: (
+    index1: number | null,
+    index2: number | null,
+    action: string
+  ) => void
+) => Promise<number[]>;
 
 interface Items {
   [key: string]: SortingFunction;
@@ -17,13 +25,14 @@ const items: Items = {
   "SELECTION SORT": selectionSort,
   "BUBBLE SORT": bubbleSort,
   "INSERTION SORT": insertionSort,
-  "QUICK SORT": quickSort,
-  "MERGE SORT": mergeSort,
+  // "QUICK SORT": quickSort,
+  // "MERGE SORT": mergeSort,
 };
 
 type ContextType = {
   randomizeNumbers: () => void;
   numbers: number[];
+  styles: string[];
   updateNumbers: (numbers: number[]) => void;
   items: Items;
   updateSortFunction: (data: string) => void;
@@ -33,6 +42,7 @@ type ContextType = {
 const initialContextValue: ContextType = {
   randomizeNumbers: () => {},
   numbers: [],
+  styles: [],
   updateNumbers: () => {},
   items: {},
   updateSortFunction: () => {},
@@ -50,23 +60,42 @@ const NumberContextProvider = ({ children }: NumberContextProviderProps) => {
     () => selectionSort
   );
   const [numbers, setNumbers] = useState<number[]>([]);
+  const [styles, setStyles] = useState<string[]>(Array(20).fill(""));
 
-  // Sorting Functions
   const updateSortFunction = (data: string) => {
     setSortFunction(() => items[data]);
   };
 
-  const sortNumbers = () => {
-    const sortedNumbers = sortFunction([...numbers]);
-    setNumbers(sortedNumbers);
+  const sortNumbers = async () => {
+    await sortFunction([...numbers], setNumbers, updateStyles);
   };
 
-  // Initial Numbers Control
   const updateNumbers = (numbers: number[]) => {
     setNumbers(numbers);
   };
 
+  const updateStyles = (
+    index1: number | null,
+    index2: number | null,
+    action: string
+  ) => {
+    const newStyles = Array(20).fill("");
+    if (action === "swap" && index1 !== null && index2 !== null) {
+      newStyles[index1] = "bar_swap";
+      newStyles[index2] = "bar_swap";
+    } else if (action === "sorted" && index1 !== null && index2 !== null) {
+      newStyles[index1] = "bar_sorted";
+      newStyles[index2] = "bar_sorted";
+    } else if (action === "complete") {
+      for (let i = 0; i < newStyles.length; i++) {
+        newStyles[i] = "bar_sorted";
+      }
+    }
+    setStyles(newStyles);
+  };
+
   const randomizeNumbers = () => {
+    const newStyles = Array(20).fill("");
     const nums: number[] = [];
     while (nums.length < 20) {
       const newNumber = Math.floor(Math.random() * 100);
@@ -74,6 +103,7 @@ const NumberContextProvider = ({ children }: NumberContextProviderProps) => {
         nums.push(newNumber);
       }
     }
+    setStyles(newStyles);
     updateNumbers(nums);
   };
 
@@ -83,6 +113,7 @@ const NumberContextProvider = ({ children }: NumberContextProviderProps) => {
 
   const providedValues = {
     numbers,
+    styles,
     updateNumbers,
     randomizeNumbers,
     items,

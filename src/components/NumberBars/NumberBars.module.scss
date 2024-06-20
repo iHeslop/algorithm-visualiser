@@ -13,28 +13,11 @@
   background-color: greenyellow;
   color: var(--c-bg);
   width: 3em;
-  &_min {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    background-color: red;
-    color: var(--c-bg);
-    width: 3em;
+  transition: background-color 0.5s, transform 0.5s;
+  &_swap {
+    background-color: brown;
   }
   &_sorted {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
     background-color: rebeccapurple;
-    color: var(--c-bg);
-    width: 3em;
-  }
-  &_swap {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    background-color: aqua;
-    color: var(--c-bg);
-    width: 3em;
   }
 }
