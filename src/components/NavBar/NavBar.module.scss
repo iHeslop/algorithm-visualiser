@@ -3,8 +3,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-right: 3%;
-  padding-left: 3%;
+  padding-right: 4em;
+  padding-left: 4em;
   height: 5em;
   border-bottom: 1px solid var(--c-txt);
 }
@@ -12,10 +12,18 @@
 .box {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 4em;
   width: 25%;
+  &_btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4em;
+    width: 25%;
+  }
   &_title {
     display: flex;
     align-items: center;

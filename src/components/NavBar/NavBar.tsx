@@ -40,7 +40,7 @@ const NavBar = () => {
           VisuAlgo
         </NavLink>
       </div>
-      <div className={styles.box}>
+      <div className={styles.box_btns}>
         <p className={styles.link_btn} onClick={randomizeNumbers}>
           RANDOMIZE
         </p>
