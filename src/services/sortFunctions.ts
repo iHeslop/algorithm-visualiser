@@ -154,8 +154,11 @@ export const quickSort = async (
 
 // Merge Sort:
 
-export const mergeSort = async (
+const merge = async (
   data: number[],
+  low: number,
+  mid: number,
+  high: number,
   updateNumbers: (numbers: number[]) => void,
   updateStyles: (
     index1: number | null,
@@ -163,6 +166,69 @@ export const mergeSort = async (
     action: string
   ) => void
 ) => {
-  console.log("Merge Sort");
-  return [];
+  let num1 = mid - low + 1;
+  let num2 = high - mid;
+  let leftArray = new Array(num1);
+  let rightArray = new Array(num2);
+
+  for (let i = 0; i < num1; i++) {
+    leftArray[i] = data[low + i];
+  }
+  for (let i = 0; i < num2; i++) {
+    rightArray[i] = data[mid + 1 + i];
+  }
+
+  let i = 0;
+  let j = 0;
+  let k = low;
+
+  while (i < num1 && j < num2) {
+    updateStyles(low + i, mid + 1 + j, "swap");
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    if (leftArray[i] <= rightArray[j]) {
+      data[k] = leftArray[i];
+      i++;
+    } else {
+      data[k] = rightArray[j];
+      j++;
+    }
+    k++;
+    updateNumbers([...data]);
+  }
+
+  while (i < num1) {
+    data[k] = leftArray[i];
+    i++;
+    k++;
+    updateNumbers([...data]);
+  }
+
+  while (j < num2) {
+    data[k] = rightArray[j];
+    j++;
+    k++;
+    updateNumbers([...data]);
+  }
+  updateStyles(null, null, "complete");
+};
+
+export const mergeSort = async (
+  data: number[],
+  low: number,
+  high: number,
+  updateNumbers: (numbers: number[]) => void,
+  updateStyles: (
+    index1: number | null,
+    index2: number | null,
+    action: string
+  ) => void
+): Promise<number[]> => {
+  if (low >= high) {
+    return data;
+  }
+  let mid = Math.floor(low + (high - low) / 2);
+  await mergeSort(data, low, mid, updateNumbers, updateStyles);
+  await mergeSort(data, mid + 1, high, updateNumbers, updateStyles);
+  await merge(data, low, mid, high, updateNumbers, updateStyles);
+  return data;
 };

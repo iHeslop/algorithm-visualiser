@@ -4,7 +4,7 @@ import {
   bubbleSort,
   insertionSort,
   quickSort,
-  // mergeSort,
+  mergeSort,
 } from "../services/sortFunctions";
 
 type SortingFunction = (
@@ -31,12 +31,20 @@ const quickSortWrapper: SortingFunction = async (
   return quickSort(data, 0, data.length - 1, updateNumbers, updateStyles);
 };
 
+const mergeSortWrapper: SortingFunction = async (
+  data,
+  updateNumbers,
+  updateStyles
+) => {
+  return mergeSort(data, 0, data.length - 1, updateNumbers, updateStyles);
+};
+
 const items: Items = {
   "SELECTION SORT": selectionSort,
   "BUBBLE SORT": bubbleSort,
   "INSERTION SORT": insertionSort,
   "QUICK SORT": quickSortWrapper,
-  // "MERGE SORT": mergeSort,
+  "MERGE SORT": mergeSortWrapper,
 };
 
 type ContextType = {
