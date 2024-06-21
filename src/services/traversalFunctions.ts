@@ -1,8 +1,14 @@
+type TreeNode = {
+  value: number;
+  left: TreeNode | null;
+  right: TreeNode | null;
+};
+
 // Breadth-First-Search
 export const bfs = async (
-  data: number[],
+  data: TreeNode | number[],
   target: number,
-  updateNumbers: (numbers: number[]) => void,
+  setTree: (numbers: number[]) => void,
   updateStyles: (
     index1: number | null,
     index2: number | null,
@@ -14,9 +20,9 @@ export const bfs = async (
 
 // Depth-First-Search
 export const dfs = async (
-  data: number[],
+  data: TreeNode | number[],
   target: number,
-  updateNumbers: (numbers: number[]) => void,
+  setTree: (numbers: number[]) => void,
   updateStyles: (
     index1: number | null,
     index2: number | null,
@@ -28,9 +34,9 @@ export const dfs = async (
 
 // Dijkstra's Algorithm
 export const dij = async (
-  data: number[],
+  data: TreeNode | number[],
   target: number,
-  updateNumbers: (numbers: number[]) => void,
+  setTree: (numbers: number[]) => void,
   updateStyles: (
     index1: number | null,
     index2: number | null,

@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { bfs, dfs, dij } from "../services/traversalFunctions";
 
 type TraversalFunction = (
-  data: number[],
+  data: TreeNode | number[],
   target: number,
   updateNumbers: (numbers: number[]) => void,
   updateStyles: (
@@ -15,6 +15,12 @@ type TraversalFunction = (
 interface Items {
   [key: string]: TraversalFunction;
 }
+
+type TreeNode = {
+  value: number;
+  left: TreeNode | null;
+  right: TreeNode | null;
+};
 
 type ContextType = {
   randomizeNumbers: () => void;

@@ -83,8 +83,18 @@ const NavBar = () => {
       )}
       {isTraversalPage && traversalContext && (
         <div className={styles.box_btns}>
-          <p className={styles.link_btn}>RANDOMIZE</p>
-          <p className={styles.link_btn}>TRAVERSE</p>
+          <p
+            className={styles.link_btn}
+            onClick={traversalContext.randomizeNumbers}
+          >
+            RANDOMIZE
+          </p>
+          <p
+            className={styles.link_btn}
+            onClick={traversalContext.searchNumbers}
+          >
+            TRAVERSE
+          </p>
         </div>
       )}
     </div>
