@@ -1,11 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import {
-  linearSearch,
-  binarySearch,
-  fibonacciSearch,
-  ternarySearch,
-  interpolationSearch,
-} from "../services/searchFunctions";
+import { bfs, dfs, dij } from "../services/traversalFunctions";
 
 type TraversalFunction = (
   data: number[],
@@ -51,16 +45,14 @@ type SearchContextProviderProps = {
 };
 
 const items: Items = {
-  "LINEAR SEARCH": linearSearch,
-  "BINARY SEARCH": binarySearch,
-  "FIBONACCI SEARCH": fibonacciSearch,
-  "TERNARY SEARCH": ternarySearch,
-  "INTERPOLATION SEARCH": interpolationSearch,
+  "BREADTH FIRST SEARCH": bfs,
+  "DEPTH FIRST SEARCH": dfs,
+  "DIJKSTRA'S ALGORITHM": dij,
 };
 
 const TraversalContextProvider = ({ children }: SearchContextProviderProps) => {
   const [searchFunction, setSearchFunction] = useState<TraversalFunction>(
-    () => linearSearch
+    () => bfs
   );
 
   const [numbers, setNumbers] = useState<number[]>([]);
@@ -110,9 +102,6 @@ const TraversalContextProvider = ({ children }: SearchContextProviderProps) => {
       if (!nums.includes(newNumber) && newNumber > 3) {
         nums.push(newNumber);
       }
-    }
-    if (searchFunction !== linearSearch) {
-      nums.sort((a, b) => a - b);
     }
     setStyles(newStyles);
     updateNumbers(nums);

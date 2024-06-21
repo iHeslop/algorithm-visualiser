@@ -34,6 +34,7 @@
   - Binary Search
   - Fibonacci Search
   - Ternary Search
+  - Interpolation Search
 
 - Tree / Graph Traversal
   - Bread First Search (BFS)
