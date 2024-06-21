@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import SubMenu from "../../components/SubMenu/SubMenu";
 import { SearchContext } from "../../context/SearchContextProvider";
 import NumberSquares from "../../components/NumberSquares/NumberSquares";
+import ComplexityText from "../../components/ComplexityText/ComplexityText";
 
 const SearchPage = () => {
   const { items, updateSearchFunction } = useContext(SearchContext);
@@ -17,6 +18,7 @@ const SearchPage = () => {
         updateFunction={updateSearchFunction}
       />
       <NumberSquares />
+      <ComplexityText selectedItem={selectedItem} />
     </>
   );
 };

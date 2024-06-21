@@ -7,7 +7,7 @@ import {
   interpolationSearch,
 } from "../services/searchFunctions";
 
-type SearchFunction = (
+type TraversalFunction = (
   data: number[],
   target: number,
   updateNumbers: (numbers: number[]) => void,
@@ -19,7 +19,7 @@ type SearchFunction = (
 ) => Promise<number | null>;
 
 interface Items {
-  [key: string]: SearchFunction;
+  [key: string]: TraversalFunction;
 }
 
 type ContextType = {
@@ -44,7 +44,7 @@ const initialContextValue: ContextType = {
   searchNumbers: () => {},
 };
 
-export const SearchContext = createContext<ContextType>(initialContextValue);
+export const TraversalContext = createContext<ContextType>(initialContextValue);
 
 type SearchContextProviderProps = {
   children: React.ReactNode;
@@ -58,8 +58,8 @@ const items: Items = {
   "INTERPOLATION SEARCH": interpolationSearch,
 };
 
-const SearchContextProvider = ({ children }: SearchContextProviderProps) => {
-  const [searchFunction, setSearchFunction] = useState<SearchFunction>(
+const TraversalContextProvider = ({ children }: SearchContextProviderProps) => {
+  const [searchFunction, setSearchFunction] = useState<TraversalFunction>(
     () => linearSearch
   );
 
@@ -138,10 +138,10 @@ const SearchContextProvider = ({ children }: SearchContextProviderProps) => {
     searchNumbers,
   };
   return (
-    <SearchContext.Provider value={providedValues}>
+    <TraversalContext.Provider value={providedValues}>
       {children}
-    </SearchContext.Provider>
+    </TraversalContext.Provider>
   );
 };
 
-export default SearchContextProvider;
+export default TraversalContextProvider;

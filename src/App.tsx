@@ -6,23 +6,26 @@ import TraversalPage from "./pages/TraversalPage/TraversalPage";
 import SortPage from "./pages/SortPage/SortPage";
 import NumberContextProvider from "./context/NumberContextProvider";
 import SearchContextProvider from "./context/SearchContextProvider";
+import TraversalContextProvider from "./context/TraversalContextProvider";
 
 function App() {
   return (
     <>
-      <NumberContextProvider>
-        <SearchContextProvider>
-          <BrowserRouter>
-            <NavBar />
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/sort" element={<SortPage />} />
-              <Route path="/search" element={<SearchPage />} />
-              <Route path="/traversal" element={<TraversalPage />} />
-            </Routes>
-          </BrowserRouter>
-        </SearchContextProvider>
-      </NumberContextProvider>
+      <TraversalContextProvider>
+        <NumberContextProvider>
+          <SearchContextProvider>
+            <BrowserRouter>
+              <NavBar />
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/sort" element={<SortPage />} />
+                <Route path="/search" element={<SearchPage />} />
+                <Route path="/traversal" element={<TraversalPage />} />
+              </Routes>
+            </BrowserRouter>
+          </SearchContextProvider>
+        </NumberContextProvider>
+      </TraversalContextProvider>
     </>
   );
 }

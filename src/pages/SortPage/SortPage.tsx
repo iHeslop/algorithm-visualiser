@@ -3,6 +3,7 @@ import SubMenu from "../../components/SubMenu/SubMenu";
 
 import NumberBars from "../../components/NumberBars/NumberBars";
 import { NumberContext } from "../../context/NumberContextProvider";
+import ComplexityText from "../../components/ComplexityText/ComplexityText";
 
 const SortPage = () => {
   const { items, updateSortFunction } = useContext(NumberContext);
@@ -18,6 +19,7 @@ const SortPage = () => {
         updateFunction={updateSortFunction}
       />
       <NumberBars />
+      <ComplexityText selectedItem={selectedItem} />
     </>
   );
 };

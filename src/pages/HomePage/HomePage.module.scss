@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 5%;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img {
+  width: 50%;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  }
+}
+
+.text {
+  transition: 0.3s ease-in-out;
+  font-size: 20px;
+  text-align: center;
+  &:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  }
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+  &_heading {
+    font-size: 28px;
+  }
+  &_text {
+    font-size: 16px;
+  }
+}

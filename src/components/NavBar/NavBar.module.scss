@@ -9,6 +9,17 @@
   border-bottom: 1px solid var(--c-txt);
 }
 
+.containerCentered {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-right: 4em;
+  padding-left: 4em;
+  height: 5em;
+  border-bottom: 1px solid var(--c-txt);
+}
+
 .box {
   display: flex;
   flex-direction: row;
