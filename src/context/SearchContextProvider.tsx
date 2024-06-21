@@ -4,13 +4,18 @@ import {
   binarySearch,
   fibonacciSearch,
   ternarySearch,
+  interpolationSearch,
 } from "../services/searchFunctions";
 
 type SearchFunction = (
   data: number[],
   target: number,
   updateNumbers: (numbers: number[]) => void,
-  updateStyles: (index1: number | null, action: string) => void
+  updateStyles: (
+    index1: number | null,
+    index2: number | null,
+    action: string
+  ) => void
 ) => Promise<number | null>;
 
 interface Items {
@@ -50,6 +55,7 @@ const items: Items = {
   "BINARY SEARCH": binarySearch,
   "FIBONACCI SEARCH": fibonacciSearch,
   "TERNARY SEARCH": ternarySearch,
+  "INTERPOLATION SEARCH": interpolationSearch,
 };
 
 const SearchContextProvider = ({ children }: SearchContextProviderProps) => {
@@ -73,14 +79,21 @@ const SearchContextProvider = ({ children }: SearchContextProviderProps) => {
     setNumbers(numbers);
   };
 
-  const updateStyles = (index1: number | null, action: string) => {
+  const updateStyles = (
+    index1: number | null,
+    index2: number | null,
+    action: string
+  ) => {
     const newStyles = Array(20).fill("");
     if (target !== null) {
       const targetIndex = numbers.indexOf(target);
       newStyles[targetIndex] = "square_target";
     }
-    if (action === "current" && index1 !== null) {
+    if (action === "current" && index1 != null) {
       newStyles[index1] = "square_current";
+      if (index2 != null) {
+        newStyles[index2] = "square_current";
+      }
     } else if (action === "complete") {
       for (let i = 0; i < newStyles.length; i++) {
         newStyles[i] = "square_complete";
