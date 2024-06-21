@@ -127,7 +127,7 @@ const NumberContextProvider = ({ children }: NumberContextProviderProps) => {
 
   useEffect(() => {
     randomizeNumbers();
-  }, []);
+  }, [sortFunction]);
 
   const providedValues = {
     numbers,

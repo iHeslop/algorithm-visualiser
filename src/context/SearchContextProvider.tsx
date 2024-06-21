@@ -8,13 +8,10 @@ import {
 
 type SearchFunction = (
   data: number[],
+  target: number,
   updateNumbers: (numbers: number[]) => void,
-  updateStyles: (
-    index1: number | null,
-    index2: number | null,
-    action: string
-  ) => void
-) => Promise<number[]>;
+  updateStyles: (index1: number | null, action: string) => void
+) => Promise<number | null>;
 
 interface Items {
   [key: string]: SearchFunction;
@@ -22,16 +19,18 @@ interface Items {
 
 type ContextType = {
   randomizeNumbers: () => void;
+  target: number;
   numbers: number[];
   styles: string[];
   updateNumbers: (numbers: number[]) => void;
   items: Items;
   updateSearchFunction: (data: string) => void;
-  searchNumbers: () => void;
+  searchNumbers: (target: number) => void;
 };
 
 const initialContextValue: ContextType = {
   randomizeNumbers: () => {},
+  target: 0,
   numbers: [],
   styles: [],
   updateNumbers: () => {},
@@ -59,6 +58,7 @@ const SearchContextProvider = ({ children }: SearchContextProviderProps) => {
   );
 
   const [numbers, setNumbers] = useState<number[]>([]);
+  const [target, setTarget] = useState<number>(0);
   const [styles, setStyles] = useState<string[]>(Array(20).fill(""));
 
   const updateSearchFunction = (data: string) => {
@@ -66,28 +66,24 @@ const SearchContextProvider = ({ children }: SearchContextProviderProps) => {
   };
 
   const searchNumbers = async () => {
-    await searchFunction([...numbers], setNumbers, updateStyles);
+    await searchFunction([...numbers], target, setNumbers, updateStyles);
   };
 
   const updateNumbers = (numbers: number[]) => {
     setNumbers(numbers);
   };
 
-  const updateStyles = (
-    index1: number | null,
-    index2: number | null,
-    action: string
-  ) => {
+  const updateStyles = (index1: number | null, action: string) => {
     const newStyles = Array(20).fill("");
-    if (action === "swap" && index1 !== null && index2 !== null) {
-      newStyles[index1] = "bar_swap";
-      newStyles[index2] = "bar_swap";
-    } else if (action === "sorted" && index1 !== null && index2 !== null) {
-      newStyles[index1] = "bar_sorted";
-      newStyles[index2] = "bar_sorted";
+    if (target !== null) {
+      const targetIndex = numbers.indexOf(target);
+      newStyles[targetIndex] = "square_target";
+    }
+    if (action === "current" && index1 !== null) {
+      newStyles[index1] = "square_current";
     } else if (action === "complete") {
       for (let i = 0; i < newStyles.length; i++) {
-        newStyles[i] = "bar_sorted";
+        newStyles[i] = "square_complete";
       }
     }
     setStyles(newStyles);
@@ -102,16 +98,25 @@ const SearchContextProvider = ({ children }: SearchContextProviderProps) => {
         nums.push(newNumber);
       }
     }
+    if (searchFunction !== linearSearch) {
+      nums.sort((a, b) => a - b);
+    }
     setStyles(newStyles);
     updateNumbers(nums);
+    const randomTarget = nums[Math.floor(Math.random() * nums.length)];
+    setTarget(randomTarget);
+    const targetIndex = nums.indexOf(randomTarget);
+    newStyles[targetIndex] = "square_target";
+    setStyles(newStyles);
   };
 
   useEffect(() => {
     randomizeNumbers();
-  }, []);
+  }, [searchFunction]);
 
   const providedValues = {
     numbers,
+    target,
     styles,
     updateNumbers,
     randomizeNumbers,
