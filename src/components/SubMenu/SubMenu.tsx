@@ -1,18 +1,20 @@
-import { useContext } from "react";
 import styles from "./SubMenu.module.scss";
-import { NumberContext } from "../../context/NumberContextProvider";
 
 interface SubMenuProps {
   items: string[];
   selectedItem: string;
   setSelectedItem: (item: string) => void;
+  updateFunction: (item: string) => void;
 }
 
-const SubMenu = ({ items, selectedItem, setSelectedItem }: SubMenuProps) => {
-  const { updateSortFunction } = useContext(NumberContext);
-
+const SubMenu = ({
+  items,
+  selectedItem,
+  setSelectedItem,
+  updateFunction,
+}: SubMenuProps) => {
   const handleClick = (item: string) => {
-    updateSortFunction(item);
+    updateFunction(item);
     setSelectedItem(item);
   };
 

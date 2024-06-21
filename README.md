@@ -32,6 +32,8 @@
 
   - Linear Search
   - Binary Search
+  - Fibonacci Search
+  - Ternary Search
 
 - Tree / Graph Traversal
   - Bread First Search (BFS)
