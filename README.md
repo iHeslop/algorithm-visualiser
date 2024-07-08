@@ -1,9 +1,5 @@
 # VisuAlgo
 
-### Algorithms List:
-
-# VisuAlgo
-
 **Live Demo:** https://algorithm-visualiser-l3uc.onrender.com
 
 ## Snippets
