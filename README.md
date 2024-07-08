@@ -2,28 +2,6 @@
 
 ### Algorithms List:
 
-- Sort:
-
-  - Selection Sort
-  - Bubble Sort
-  - Insertion Sort
-  - Heap Sort
-  - Quick Sort
-  - Merge Sort
-
-- Search:
-
-  - Linear Search
-  - Binary Search
-  - Fibonacci Search
-  - Ternary Search
-  - Interpolation Search
-
-- Tree / Graph Traversal
-  - Bread First Search (BFS)
-  - Depth First Search (DFS)
-  - Dijkstra's Algorithm
-
 # VisuAlgo
 
 **Live Demo:** https://algorithm-visualiser-l3uc.onrender.com
@@ -94,6 +72,32 @@ npm run dev
 - **Realtime Data Visualization:** Watch the data be sorted / searched in real time with styling updates so you can visualize the different algorithms.
 - **Speed and Efficiency:** Time and space complexity information provided, and watch it in real time, with each algorithms speed shown visually to the user.
 - **Easy Navigation:** Simple and efficient design aesthetic with a simple navigation system to make it easy for the user to navigate the application.
+
+---
+
+## Algorithms:
+
+- **Sort**:
+
+  - Selection Sort
+  - Bubble Sort
+  - Insertion Sort
+  - Quick Sort
+  - Merge Sort
+
+- **Search:**
+
+  - Linear Search
+  - Binary Search
+  - Fibonacci Search
+  - Ternary Search
+  - Interpolation Search
+
+- **Tree Traversal:**
+
+  - Bread First Search (BFS)
+  - Depth First Search (DFS)
+  - Dijkstra's Algorithm
 
 ---
 
