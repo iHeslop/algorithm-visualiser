@@ -5,7 +5,8 @@ import ComplexityText from "../../components/ComplexityText/ComplexityText";
 import NumberTree from "../../components/NumberTree/NumberTree";
 
 const TraversalPage = () => {
-  const { items, updateSearchFunction } = useContext(TraversalContext);
+  const { tree, target, items, updateSearchFunction } =
+    useContext(TraversalContext);
   const itemKeys = Object.keys(items);
   const [selectedItem, setSelectedItem] = useState<string>(itemKeys[0]);
 
@@ -17,7 +18,7 @@ const TraversalPage = () => {
         setSelectedItem={setSelectedItem}
         updateFunction={updateSearchFunction}
       />
-      <NumberTree />
+      <NumberTree node={tree} target={target} />
       <ComplexityText selectedItem={selectedItem} />
     </>
   );

@@ -6,42 +6,46 @@ type TreeNode = {
 
 // Breadth-First-Search
 export const bfs = async (
-  data: TreeNode | number[],
+  root: TreeNode | null,
   target: number,
-  setTree: (numbers: number[]) => void,
-  updateStyles: (
-    index1: number | null,
-    index2: number | null,
-    action: string
-  ) => void
+  setCurrentNode: (value: number) => void,
+  setCompletedTree: (value: boolean) => void
 ) => {
-  return target;
+  if (!root) return null;
+  const queue: TreeNode[] = [root];
+  while (queue.length > 0) {
+    const currentNode = queue.shift()!;
+    const { value, left, right } = currentNode;
+
+    setCurrentNode(value);
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    if (value === target) {
+      setCompletedTree(true);
+      return value;
+    }
+    if (left) queue.push(left);
+    if (right) queue.push(right);
+  }
+  setCompletedTree(true);
+  return null;
 };
 
 // Depth-First-Search
 export const dfs = async (
-  data: TreeNode | number[],
+  root: TreeNode | null,
   target: number,
-  setTree: (numbers: number[]) => void,
-  updateStyles: (
-    index1: number | null,
-    index2: number | null,
-    action: string
-  ) => void
+  setCurrentNode: (value: number) => void,
+  setCompletedTree: (value: boolean) => void
 ) => {
   return target;
 };
 
 // Dijkstra's Algorithm
 export const dij = async (
-  data: TreeNode | number[],
+  root: TreeNode | null,
   target: number,
-  setTree: (numbers: number[]) => void,
-  updateStyles: (
-    index1: number | null,
-    index2: number | null,
-    action: string
-  ) => void
+  setCurrentNode: (value: number) => void,
+  setCompletedTree: (value: boolean) => void
 ) => {
   return target;
 };

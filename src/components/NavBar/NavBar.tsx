@@ -85,14 +85,11 @@ const NavBar = () => {
         <div className={styles.box_btns}>
           <p
             className={styles.link_btn}
-            onClick={traversalContext.randomizeNumbers}
+            onClick={traversalContext.randomizeTree}
           >
             RANDOMIZE
           </p>
-          <p
-            className={styles.link_btn}
-            onClick={traversalContext.searchNumbers}
-          >
+          <p className={styles.link_btn} onClick={traversalContext.searchTree}>
             TRAVERSE
           </p>
         </div>

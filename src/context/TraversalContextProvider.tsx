@@ -1,47 +1,43 @@
 import { createContext, useEffect, useState } from "react";
 import { bfs, dfs, dij } from "../services/traversalFunctions";
 
+export type TreeNode = {
+  value: number;
+  left: TreeNode | null;
+  right: TreeNode | null;
+};
+
 type TraversalFunction = (
-  data: TreeNode | number[],
+  root: TreeNode | null,
   target: number,
-  updateNumbers: (numbers: number[]) => void,
-  updateStyles: (
-    index1: number | null,
-    index2: number | null,
-    action: string
-  ) => void
+  setCurrentNode: (value: number) => void,
+  setCompletedTree: (value: boolean) => void
 ) => Promise<number | null>;
 
 interface Items {
   [key: string]: TraversalFunction;
 }
 
-type TreeNode = {
-  value: number;
-  left: TreeNode | null;
-  right: TreeNode | null;
-};
-
 type ContextType = {
-  randomizeNumbers: () => void;
+  randomizeTree: () => void;
   target: number;
-  numbers: number[];
-  styles: string[];
-  updateNumbers: (numbers: number[]) => void;
+  tree: TreeNode | null;
   items: Items;
   updateSearchFunction: (data: string) => void;
-  searchNumbers: () => void;
+  searchTree: () => void;
+  completed: boolean;
+  current: number;
 };
 
 const initialContextValue: ContextType = {
-  randomizeNumbers: () => {},
+  randomizeTree: () => {},
   target: 0,
-  numbers: [],
-  styles: [],
-  updateNumbers: () => {},
+  tree: null,
   items: {},
   updateSearchFunction: () => {},
-  searchNumbers: () => {},
+  searchTree: () => {},
+  completed: false,
+  current: 0,
 };
 
 export const TraversalContext = createContext<ContextType>(initialContextValue);
@@ -56,81 +52,77 @@ const items: Items = {
   "DIJKSTRA'S ALGORITHM": dij,
 };
 
+const generateRandomTree = (
+  depth = 4,
+  usedValues: number[] = []
+): TreeNode | null => {
+  if (depth === 0) return null;
+
+  let value = Math.floor(Math.random() * 99) + 1;
+  while (usedValues.includes(value)) {
+    value = Math.floor(Math.random() * 99) + 1;
+  }
+  usedValues.push(value);
+
+  const node: TreeNode = {
+    value,
+    left: generateRandomTree(depth - 1, usedValues),
+    right: generateRandomTree(depth - 1, usedValues),
+  };
+
+  return node;
+};
+
 const TraversalContextProvider = ({ children }: SearchContextProviderProps) => {
   const [searchFunction, setSearchFunction] = useState<TraversalFunction>(
     () => bfs
   );
-
-  const [numbers, setNumbers] = useState<number[]>([]);
+  const [tree, setTree] = useState<TreeNode | null>(generateRandomTree());
   const [target, setTarget] = useState<number>(0);
-  const [styles, setStyles] = useState<string[]>(Array(20).fill(""));
+  const [current, setCurrent] = useState<number>(0);
+  const [completed, setCompleted] = useState<boolean>(false);
+
+  const setCompletedTree = (value: boolean) => {
+    setCompleted(value);
+  };
+
+  const setCurrentNode = (value: number) => {
+    setCurrent(value);
+  };
 
   const updateSearchFunction = (data: string) => {
     setSearchFunction(() => items[data]);
   };
 
-  const searchNumbers = async () => {
-    await searchFunction([...numbers], target, setNumbers, updateStyles);
+  const searchTree = async () => {
+    await searchFunction(tree, target, setCurrentNode, setCompletedTree);
   };
 
-  const updateNumbers = (numbers: number[]) => {
-    setNumbers(numbers);
-  };
-
-  const updateStyles = (
-    index1: number | null,
-    index2: number | null,
-    action: string
-  ) => {
-    const newStyles = Array(20).fill("");
-    if (target !== null) {
-      const targetIndex = numbers.indexOf(target);
-      newStyles[targetIndex] = "square_target";
+  const randomizeTree = () => {
+    setCompletedTree(false);
+    const values: number[] = [];
+    const newTree = generateRandomTree(4, values);
+    setTree(newTree);
+    if (newTree != null) {
+      const randomTarget = values[Math.floor(Math.random() * values.length)];
+      setTarget(randomTarget);
     }
-    if (action === "current" && index1 != null) {
-      newStyles[index1] = "square_current";
-      if (index2 != null) {
-        newStyles[index2] = "square_current";
-      }
-    } else if (action === "complete") {
-      for (let i = 0; i < newStyles.length; i++) {
-        newStyles[i] = "square_complete";
-      }
-    }
-    setStyles(newStyles);
-  };
-
-  const randomizeNumbers = () => {
-    const newStyles = Array(20).fill("");
-    const nums: number[] = [];
-    while (nums.length < 20) {
-      const newNumber = Math.floor(Math.random() * 100);
-      if (!nums.includes(newNumber) && newNumber > 3) {
-        nums.push(newNumber);
-      }
-    }
-    setStyles(newStyles);
-    updateNumbers(nums);
-    const randomTarget = nums[Math.floor(Math.random() * nums.length)];
-    setTarget(randomTarget);
-    const targetIndex = nums.indexOf(randomTarget);
-    newStyles[targetIndex] = "square_target";
-    setStyles(newStyles);
   };
 
   useEffect(() => {
-    randomizeNumbers();
+    randomizeTree();
   }, [searchFunction]);
 
   const providedValues = {
-    numbers,
+    tree,
     target,
-    styles,
-    updateNumbers,
-    randomizeNumbers,
+    randomizeTree,
     items,
     updateSearchFunction,
-    searchNumbers,
+    searchTree,
+    setCompletedTree,
+    completed,
+    current,
   };
   return (
     <TraversalContext.Provider value={providedValues}>
