@@ -45,6 +45,18 @@ const complexityInfo: { [key: string]: { time: string; space: string } } = {
     time: "O(log2(log2 n))",
     space: "O(1)",
   },
+  "BREADTH FIRST SEARCH": {
+    time: "O(V + E)",
+    space: "O(V)",
+  },
+  "DEPTH FIRST SEARCH": {
+    time: "O(V + E)",
+    space: "O(V)",
+  },
+  "DIJKSTRA'S ALGORITHM": {
+    time: "O(E * log V)",
+    space: "O(V)",
+  },
 };
 
 const ComplexityText = ({ selectedItem }: ComplexityProps) => {

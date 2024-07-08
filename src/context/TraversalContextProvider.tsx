@@ -100,6 +100,7 @@ const TraversalContextProvider = ({ children }: SearchContextProviderProps) => {
 
   const randomizeTree = () => {
     setCompletedTree(false);
+    setCurrentNode(0);
     const values: number[] = [];
     const newTree = generateRandomTree(4, values);
     setTree(newTree);
