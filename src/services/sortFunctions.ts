@@ -20,7 +20,7 @@ export const selectionSort = async (
       [data[i], data[minIndex]] = [data[minIndex], data[i]];
       updateNumbers([...data]);
       updateStyles(i, minIndex, "swap");
-      await new Promise((resolve) => setTimeout(resolve, 400));
+      await new Promise((resolve) => setTimeout(resolve, 500));
     }
   }
   updateStyles(null, null, "complete");
@@ -44,7 +44,7 @@ export const bubbleSort = async (
         [data[j], data[j + 1]] = [data[j + 1], data[j]];
         updateNumbers([...data]);
         updateStyles(j, j + 1, "swap");
-        await new Promise((resolve) => setTimeout(resolve, 400));
+        await new Promise((resolve) => setTimeout(resolve, 500));
       }
     }
   }
@@ -69,7 +69,7 @@ export const insertionSort = async (
       [data[j], data[j - 1]] = [data[j - 1], data[j]];
       updateNumbers([...data]);
       updateStyles(j, j - 1, "swap");
-      await new Promise((resolve) => setTimeout(resolve, 400));
+      await new Promise((resolve) => setTimeout(resolve, 500));
       j -= 1;
     }
   }
@@ -99,14 +99,14 @@ const partition = async (
       [data[i], data[j]] = [data[j], data[i]];
       updateNumbers([...data]);
       updateStyles(i, j, "swap");
-      await new Promise((resolve) => setTimeout(resolve, 400));
+      await new Promise((resolve) => setTimeout(resolve, 500));
     }
   }
 
   [data[i + 1], data[high]] = [data[high], data[i + 1]];
   updateNumbers([...data]);
   updateStyles(i + 1, high, "swap");
-  await new Promise((resolve) => setTimeout(resolve, 400));
+  await new Promise((resolve) => setTimeout(resolve, 500));
   updateStyles(i + 1, high, "sorted");
 
   return i + 1;
@@ -180,7 +180,7 @@ const merge = async (
 
   while (i < num1 && j < num2) {
     updateStyles(low + i, mid + 1 + j, "swap");
-    await new Promise((resolve) => setTimeout(resolve, 400));
+    await new Promise((resolve) => setTimeout(resolve, 500));
     if (leftArray[i] <= rightArray[j]) {
       data[k] = leftArray[i];
       i++;
