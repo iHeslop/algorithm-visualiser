@@ -66,13 +66,18 @@ const SearchContextProvider = ({ children }: SearchContextProviderProps) => {
   const [numbers, setNumbers] = useState<number[]>([]);
   const [target, setTarget] = useState<number>(0);
   const [styles, setStyles] = useState<string[]>(Array(20).fill(""));
+  const [isActive, setIsActive] = useState<boolean>(false);
 
   const updateSearchFunction = (data: string) => {
     setSearchFunction(() => items[data]);
   };
 
   const searchNumbers = async () => {
-    await searchFunction([...numbers], target, setNumbers, updateStyles);
+    if (!isActive) {
+      setIsActive(true);
+      await searchFunction([...numbers], target, setNumbers, updateStyles);
+      setIsActive(false);
+    }
   };
 
   const updateNumbers = (numbers: number[]) => {

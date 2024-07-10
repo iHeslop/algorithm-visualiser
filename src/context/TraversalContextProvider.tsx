@@ -81,6 +81,7 @@ const TraversalContextProvider = ({ children }: SearchContextProviderProps) => {
   const [target, setTarget] = useState<number>(0);
   const [current, setCurrent] = useState<number>(0);
   const [completed, setCompleted] = useState<boolean>(false);
+  const [isActive, setIsActive] = useState<boolean>(false);
 
   const setCompletedTree = (value: boolean) => {
     setCompleted(value);
@@ -95,7 +96,11 @@ const TraversalContextProvider = ({ children }: SearchContextProviderProps) => {
   };
 
   const searchTree = async () => {
-    await searchFunction(tree, target, setCurrentNode, setCompletedTree);
+    if (!isActive) {
+      setIsActive(true);
+      await searchFunction(tree, target, setCurrentNode, setCompletedTree);
+      setIsActive(false);
+    }
   };
 
   const randomizeTree = () => {

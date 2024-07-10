@@ -63,7 +63,10 @@ const NavBar = () => {
           >
             RANDOMIZE
           </p>
-          <p className={styles.link_btn} onClick={numberContext.sortNumbers}>
+          <p
+            className={`${styles.link_btn} ${styles.link_btn_action}`}
+            onClick={numberContext.sortNumbers}
+          >
             SORT
           </p>
         </div>
@@ -76,7 +79,10 @@ const NavBar = () => {
           >
             RANDOMIZE
           </p>
-          <p className={styles.link_btn} onClick={searchContext.searchNumbers}>
+          <p
+            className={`${styles.link_btn} ${styles.link_btn_action}`}
+            onClick={searchContext.searchNumbers}
+          >
             SEARCH
           </p>
         </div>
@@ -89,7 +95,10 @@ const NavBar = () => {
           >
             RANDOMIZE
           </p>
-          <p className={styles.link_btn} onClick={traversalContext.searchTree}>
+          <p
+            className={`${styles.link_btn} ${styles.link_btn_action}`}
+            onClick={traversalContext.searchTree}
+          >
             TRAVERSE
           </p>
         </div>

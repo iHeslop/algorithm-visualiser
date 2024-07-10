@@ -79,13 +79,18 @@ const NumberContextProvider = ({ children }: NumberContextProviderProps) => {
   );
   const [numbers, setNumbers] = useState<number[]>([]);
   const [styles, setStyles] = useState<string[]>(Array(20).fill(""));
+  const [isActive, setIsActive] = useState<boolean>(false);
 
   const updateSortFunction = (data: string) => {
     setSortFunction(() => items[data]);
   };
 
   const sortNumbers = async () => {
-    await sortFunction([...numbers], setNumbers, updateStyles);
+    if (!isActive) {
+      setIsActive(true);
+      await sortFunction([...numbers], setNumbers, updateStyles);
+      setIsActive(false);
+    }
   };
 
   const updateNumbers = (numbers: number[]) => {
