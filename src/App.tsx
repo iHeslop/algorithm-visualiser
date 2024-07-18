@@ -4,7 +4,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import TraversalPage from "./pages/TraversalPage/TraversalPage";
 import SortPage from "./pages/SortPage/SortPage";
-import NumberContextProvider from "./context/SortContextProvider";
+import SortContextProvider from "./context/SortContextProvider";
 import SearchContextProvider from "./context/SearchContextProvider";
 import TraversalContextProvider from "./context/TraversalContextProvider";
 
@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <TraversalContextProvider>
-        <NumberContextProvider>
+        <SortContextProvider>
           <SearchContextProvider>
             <BrowserRouter>
               <NavBar />
@@ -24,7 +24,7 @@ function App() {
               </Routes>
             </BrowserRouter>
           </SearchContextProvider>
-        </NumberContextProvider>
+        </SortContextProvider>
       </TraversalContextProvider>
     </>
   );

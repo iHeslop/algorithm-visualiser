@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { NumberContext } from "../../context/SortContextProvider";
+import { SortContext } from "../../context/SortContextProvider";
 import styles from "./NumberBars.module.scss";
 
 const NumberBars = () => {
-  const { numbers, styles: barStyles } = useContext(NumberContext);
+  const { numbers, styles: barStyles } = useContext(SortContext);
   return (
     <div className={styles.container}>
       {numbers.map((num, index) => (

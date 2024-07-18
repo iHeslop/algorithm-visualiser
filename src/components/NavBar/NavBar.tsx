@@ -2,7 +2,7 @@ import styles from "./NavBar.module.scss";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { useContext } from "react";
-import { NumberContext } from "../../context/SortContextProvider";
+import { SortContext } from "../../context/SortContextProvider";
 import { SearchContext } from "../../context/SearchContextProvider";
 import { TraversalContext } from "../../context/TraversalContextProvider";
 
@@ -13,7 +13,7 @@ const NavBar = () => {
   const isSearchPage = location.pathname === "/search";
   const isTraversalPage = location.pathname === "/traversal";
 
-  const numberContext = useContext(NumberContext);
+  const sortContext = useContext(SortContext);
   const searchContext = useContext(SearchContext);
   const traversalContext = useContext(TraversalContext);
 
@@ -55,17 +55,17 @@ const NavBar = () => {
         </NavLink>
       </div>
 
-      {isSortPage && numberContext && (
+      {isSortPage && sortContext && (
         <div className={styles.box_btns}>
           <p
             className={styles.link_btn}
-            onClick={numberContext.randomizeNumbers}
+            onClick={sortContext.randomizeNumbers}
           >
             RANDOMIZE
           </p>
           <p
             className={`${styles.link_btn} ${styles.link_btn_action}`}
-            onClick={numberContext.sortNumbers}
+            onClick={sortContext.sortNumbers}
           >
             SORT
           </p>
