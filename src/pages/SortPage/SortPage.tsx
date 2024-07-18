@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import SubMenu from "../../components/SubMenu/SubMenu";
 
 import NumberBars from "../../components/NumberBars/NumberBars";
-import { NumberContext } from "../../context/NumberContextProvider";
+import { NumberContext } from "../../context/SortContextProvider";
 import ComplexityText from "../../components/ComplexityText/ComplexityText";
 
 const SortPage = () => {

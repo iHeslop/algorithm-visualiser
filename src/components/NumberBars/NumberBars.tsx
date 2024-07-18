@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NumberContext } from "../../context/NumberContextProvider";
+import { NumberContext } from "../../context/SortContextProvider";
 import styles from "./NumberBars.module.scss";
 
 const NumberBars = () => {

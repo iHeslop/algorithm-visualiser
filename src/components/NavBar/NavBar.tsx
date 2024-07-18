@@ -2,7 +2,7 @@ import styles from "./NavBar.module.scss";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { useContext } from "react";
-import { NumberContext } from "../../context/NumberContextProvider";
+import { NumberContext } from "../../context/SortContextProvider";
 import { SearchContext } from "../../context/SearchContextProvider";
 import { TraversalContext } from "../../context/TraversalContextProvider";
 

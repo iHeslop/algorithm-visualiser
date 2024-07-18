@@ -67,13 +67,13 @@ const initialContextValue: ContextType = {
   sortNumbers: () => {},
 };
 
-export const NumberContext = createContext<ContextType>(initialContextValue);
+export const SortContext = createContext<ContextType>(initialContextValue);
 
-type NumberContextProviderProps = {
+type SortContextProviderProps = {
   children: React.ReactNode;
 };
 
-const NumberContextProvider = ({ children }: NumberContextProviderProps) => {
+const SortContextProvider = ({ children }: SortContextProviderProps) => {
   const [sortFunction, setSortFunction] = useState<SortingFunction>(
     () => selectionSort
   );
@@ -145,10 +145,10 @@ const NumberContextProvider = ({ children }: NumberContextProviderProps) => {
   };
 
   return (
-    <NumberContext.Provider value={providedValues}>
+    <SortContext.Provider value={providedValues}>
       {children}
-    </NumberContext.Provider>
+    </SortContext.Provider>
   );
 };
 
-export default NumberContextProvider;
+export default SortContextProvider;
